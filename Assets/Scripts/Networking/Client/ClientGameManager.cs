@@ -10,17 +10,23 @@ using Unity.Services.Relay;
 using Unity.Netcode.Transports.UTP;
 using Unity.Netcode;
 using Unity.Networking.Transport.Relay;
+using System.Text;
+using Unity.Services.Authentication;
 
-public class ClientGameManager
+public class ClientGameManager : IDisposable
 {
     private JoinAllocation allocation;
 
     private const string MenuSceneName = "Menu";
 
+    private NetworkClient networkClient;
+
     public async Task<bool> InitAsync()
     {
         // Athenticate Unity services
         await UnityServices.InitializeAsync();
+
+        networkClient = new NetworkClient(NetworkManager.Singleton);
 
         // Authentica player
         AuthState authState = await AuthenticationWrapper.DoAuth();
@@ -48,11 +54,26 @@ public class ClientGameManager
         RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
         transport.SetRelayServerData(relayServerData);
 
+        UserData userData = new UserData
+        {
+            userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing Name"),
+            userAuthId = AuthenticationService.Instance.PlayerId
+        };
+        string payload = JsonUtility.ToJson(userData);
+        byte[] payloadBytes = Encoding.UTF8.GetBytes(payload);
+
+        NetworkManager.Singleton.NetworkConfig.ConnectionData = payloadBytes;
+
         NetworkManager.Singleton.StartClient();
     }
 
     public void GoToMenu ()
     {
         SceneManager.LoadScene(MenuSceneName);
+    }
+
+    public void Dispose()
+    {
+        networkClient?.Dispose();
     }
 }
