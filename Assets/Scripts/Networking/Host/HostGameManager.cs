@@ -21,7 +21,7 @@ public class HostGameManager : IDisposable
     [SerializeField] private string joinCode;
     [SerializeField] private string lobbyId;
     [SerializeField] private const string GameSceneName = "Game";
-    private NetworkServer networkServer;
+    public NetworkServer NetworkServer { get; private set; }
 
     public async Task StartHostAsync()
     {
@@ -75,7 +75,7 @@ public class HostGameManager : IDisposable
             return;
         }
 
-        networkServer = new NetworkServer(NetworkManager.Singleton);
+        NetworkServer = new NetworkServer(NetworkManager.Singleton);
 
         UserData userData = new UserData
         {
@@ -120,6 +120,6 @@ public class HostGameManager : IDisposable
             lobbyId = string.Empty;
         }
 
-        networkServer?.Dispose();
+        NetworkServer?.Dispose();
     }
 }
