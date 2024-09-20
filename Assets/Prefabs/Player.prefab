@@ -145,13 +145,13 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058815441136048954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7607751494151919375}
   - {fileID: 1240421233490663142}
-  m_Father: {fileID: 4505712166343857913}
+  m_Father: {fileID: 5748998407101561093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -324,6 +324,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2509273386984425879}
+  - {fileID: 3301990554711126597}
   m_Father: {fileID: 4505712166343857913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3203456897130029140
@@ -741,7 +742,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9192687423648798291}
-  - {fileID: 3301990554711126597}
   - {fileID: 5748998407101561093}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -889,6 +889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 3203456897130029140}
+  <Health>k__BackingField: {fileID: -1455220830360765606}
   ownerPriority: 15
   PlayerName:
     m_InternalValue:

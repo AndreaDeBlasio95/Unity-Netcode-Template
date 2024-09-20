@@ -36,7 +36,7 @@ public class NetworkServer : IDisposable
 
     private void OnNetworkReady()
     {
-        networkManager.OnClientConnectedCallback += OnClientDisconnect;
+        networkManager.OnClientDisconnectCallback += OnClientDisconnect;
     }
 
     private void OnClientDisconnect(ulong clientId)

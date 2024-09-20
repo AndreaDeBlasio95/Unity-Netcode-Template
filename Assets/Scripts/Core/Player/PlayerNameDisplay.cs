@@ -13,6 +13,7 @@ public class PlayerNameDisplay : MonoBehaviour
     private void Start()
     {
         HandlePlayerNameChanged(string.Empty, player.PlayerName.Value);
+
         player.PlayerName.OnValueChanged += HandlePlayerNameChanged;
     }
 

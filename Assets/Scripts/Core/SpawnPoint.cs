@@ -20,9 +20,11 @@ public class SpawnPoint : MonoBehaviour
     {
         if (spawnPoints.Count == 0)
         {
+            Debug.Log("0");
             return Vector3.zero;
         }
 
+        Debug.Log(spawnPoints.Count);
         return spawnPoints[Random.Range(0, spawnPoints.Count)].transform.position;
     }
 
