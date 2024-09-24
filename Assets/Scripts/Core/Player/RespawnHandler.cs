@@ -13,14 +13,14 @@ public class RespawnHandler : NetworkBehaviour
     {
         if (!IsServer) { return; }
 
-        TankPlayer[] players = FindObjectsOfType<TankPlayer>();
+        TankPlayer[] players = FindObjectsByType<TankPlayer>(FindObjectsSortMode.None);
         foreach(TankPlayer player in players)
         {
             HandlePlayerSpawn(player);
         }
 
         TankPlayer.OnPlayerSpawned += HandlePlayerSpawn;
-        TankPlayer.OnPlayerSpawned += HandlePlayerDespawn;
+        TankPlayer.OnPlayerDespawned += HandlePlayerDespawn;
     }
 
 
@@ -29,7 +29,7 @@ public class RespawnHandler : NetworkBehaviour
         if (!IsServer) { return; }
 
         TankPlayer.OnPlayerSpawned -= HandlePlayerSpawn;
-        TankPlayer.OnPlayerSpawned -= HandlePlayerDespawn;
+        TankPlayer.OnPlayerDespawned -= HandlePlayerDespawn;
     }
 
     private void HandlePlayerSpawn(TankPlayer player)
